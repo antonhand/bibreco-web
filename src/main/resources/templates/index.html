@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<div th:replace="~{templates :: header}"></div>
+		 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+
+  <body>
+        <center>
+            <div class="text-center" style="width: 900px;">
+                <form th:action="@{/bibreco}" th:object="${output}" method="post" enctype="multipart/form-data">
+                    
+                    <div class="form-group row">
+                        <div class="custom-file">
+						<input class="custom-file-input" type="file" name="fileimp"
+							th:field="*{files}" multiple=true accept=".pdf" id="fileimp"
+							data-browse="Обзор"> <label class="custom-file-label" for="fileimp"  data-browse="Обзор">Выберите pdf-файлы статей для обработки</label>
+                        </div>
+                    </div>
+                    <p>
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseWeight" aria-expanded="false" aria-controls="collapseWeight">
+                        Настройки рекомендации
+                    </button>
+                    </p>
+                    <div class="collapse" id="collapseWeight">
+                        <h4>Значимость признаков</h4><br>
+                        <div  class="form-group row">
+                        	<div style="width: 300px;" th:each="inp,inpStat : ${input}">
+                             	<label th:for="'numb' + ${inpStat.index}" class="col-sm-7" th:text="${inp}"></label>                   
+                            	<input th:field="*{weights[__${inpStat.index}__]}" class="col-sm-4 custom-range" type="range" min="0" max="5" th:name="'n' + ${inpStat.index}" th:id="'numb' + ${inpStat.index}" value=0 style="text-align:center">
+                             </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input class="btn btn-primary mb-2" type="submit" value="Отправить">
+                </form> 
+            </div>
+        </center>
+        <div th:insert="~{templates :: foot}"></div>
+  </body>
+</html>

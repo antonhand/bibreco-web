@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<div th:replace="~{templates :: header}"></div>
+</head>
+
+<body>
+	<center>
+		<div class="text-center" style="width: 900px;">
+			<h3>Исходные файлы</h3>
+			<p th:text="${files}" />
+			<h3>Рекомендации</h3>
+			<p th:each="weight,iterStat : ${weights}"
+				th:text="'weight ' + ${iterStat.index} + ': ' + ${weight}" />
+
+			<div th:each="rec,iterStat : ${records}" class="card mb-3"
+				style="max-width: 900px;">
+				<div class="row no-gutters">
+					<div class="col-md-1">
+						<div class="card-body">
+							<p class="h5 card-title" th:text="${iterStat.count}" />
+						</div>
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<p class="h5 card-title" th:text="${rec.title}" />
+							<p class="card-text" th:text="'Автор(ы): ' +${rec.authorsString}" />
+							<p class="card-text" th:text="'Журнал: ' + ${rec.journal}" />
+							<p class="card-text" th:text="'Год издания: ' +${rec.year}" />
+							<p class="card-text">
+								<a th:href="'https://scholar.google.ru/scholar?hl=ru&q=' + ${rec}">Поиск в Google Академия</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+</body>
+</html>
