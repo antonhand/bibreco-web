@@ -1,2 +1,1 @@
-# bibreco-web
-Веб-интерфейс рекомендательной системы Bibreco | Bibreco recomender system web-interface
+# Веб-интерфейс рекомендательной системы Bibreco | Bibreco recommendation system web-interface
